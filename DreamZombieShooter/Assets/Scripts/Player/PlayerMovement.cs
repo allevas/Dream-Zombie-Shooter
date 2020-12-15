@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
         Move(horizontalInput, verticalInput);
         Turning();
+        Animating(horizontalInput, verticalInput);
     }
 
     private void Move(float h, float v)
@@ -53,5 +54,11 @@ public class PlayerMovement : MonoBehaviour
             Quaternion newRotation = Quaternion.LookRotation(playerToMouse);
             playerRB.MoveRotation(newRotation);
         }
+    }
+
+    void Animating(float h, float v)
+    {
+        bool walking = h != 0 || v != 0;
+        anim.SetBool("isWalking", walking);
     }
 }
